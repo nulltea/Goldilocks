@@ -320,3 +320,105 @@ impl PrimeField for GoldilocksExt2 {
         unimplemented!()
     }
 }
+
+impl Add<Goldilocks> for GoldilocksExt2 {
+    type Output = Self;
+
+    #[inline]
+    fn add(mut self, rhs: Goldilocks) -> Self::Output {
+        self += &rhs;
+        self
+    }
+}
+
+impl<'a> Add<&'a Goldilocks> for GoldilocksExt2 {
+    type Output = Self;
+
+    #[inline]
+    fn add(mut self, rhs: &'a Goldilocks) -> Self::Output {
+        self += rhs;
+        self
+    }
+}
+
+impl AddAssign<Goldilocks> for GoldilocksExt2 {
+    #[inline]
+    fn add_assign(&mut self, rhs: Goldilocks) {
+        *self += &rhs;
+    }
+}
+
+impl<'a> AddAssign<&'a Goldilocks> for GoldilocksExt2 {
+    #[inline]
+    fn add_assign(&mut self, rhs: &'a Goldilocks) {
+        self.0[0] += rhs;
+    }
+}
+
+impl Sub<Goldilocks> for GoldilocksExt2 {
+    type Output = Self;
+
+    #[inline]
+    fn sub(mut self, rhs: Goldilocks) -> Self::Output {
+        self -= &rhs;
+        self
+    }
+}
+
+impl<'a> Sub<&'a Goldilocks> for GoldilocksExt2 {
+    type Output = Self;
+
+    #[inline]
+    fn sub(mut self, rhs: &'a Goldilocks) -> Self::Output {
+        self -= rhs;
+        self
+    }
+}
+
+impl SubAssign<Goldilocks> for GoldilocksExt2 {
+    #[inline]
+    fn sub_assign(&mut self, rhs: Goldilocks) {
+        *self -= &rhs;
+    }
+}
+
+impl<'a> SubAssign<&'a Goldilocks> for GoldilocksExt2 {
+    #[inline]
+    fn sub_assign(&mut self, rhs: &'a Goldilocks) {
+        self.0[0] -= rhs;
+    }
+}
+
+impl Mul<Goldilocks> for GoldilocksExt2 {
+    type Output = Self;
+
+    #[inline]
+    fn mul(mut self, rhs: Goldilocks) -> Self::Output {
+        self *= &rhs;
+        self
+    }
+}
+
+impl<'a> Mul<&'a Goldilocks> for GoldilocksExt2 {
+    type Output = Self;
+
+    #[inline]
+    fn mul(mut self, rhs: &'a Goldilocks) -> Self::Output {
+        self *= rhs;
+        self
+    }
+}
+
+impl MulAssign<Goldilocks> for GoldilocksExt2 {
+    #[inline]
+    fn mul_assign(&mut self, rhs: Goldilocks) {
+        *self *= &rhs;
+    }
+}
+
+impl<'a> MulAssign<&'a Goldilocks> for GoldilocksExt2 {
+    #[inline]
+    fn mul_assign(&mut self, rhs: &'a Goldilocks) {
+        *self = Self(self.0.map(|lhs| lhs * rhs));
+    }
+}
