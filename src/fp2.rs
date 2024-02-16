@@ -126,7 +126,11 @@ impl Field for GoldilocksExt2 {
     /// Computes the multiplicative inverse of this element,
     /// failing if the element is zero.
     fn invert(&self) -> CtOption<Self> {
-        unimplemented!()
+        let [a0, a1] = self.0;
+        let omega = Goldilocks(7);
+        (a0.square() - omega * a1.square())
+            .invert()
+            .map(|det_inv| Self([det_inv * a0, -det_inv * a1]))
     }
 
     /// Returns the square root of the field element, if it is
