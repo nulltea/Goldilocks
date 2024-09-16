@@ -308,7 +308,7 @@ impl PrimeField for Goldilocks {
     /// The endianness of the byte representation is implementation-specific. Generic
     /// encodings of field elements should be treated as opaque.
     fn to_repr(&self) -> Self::Repr {
-        *self
+        Self(self.to_canonical_u64())
     }
 
     /// Returns true iff this element is odd.
