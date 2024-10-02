@@ -1,4 +1,4 @@
-use std::arch::asm;
+// use std::arch::asm;
 use std::hint::unreachable_unchecked;
 
 use ff::{Field, PrimeField};
@@ -26,9 +26,9 @@ pub fn assume(p: bool) {
 /// This function has no semantics. It is a hint only.
 #[inline(always)]
 pub fn branch_hint() {
-    unsafe {
-        asm!("", options(nomem, nostack, preserves_flags));
-    }
+    // unsafe {
+    //     asm!("", options(nomem, nostack, preserves_flags));
+    // }
 }
 
 /// Fast addition modulo ORDER for x86-64.
